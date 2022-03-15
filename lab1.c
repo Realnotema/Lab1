@@ -67,7 +67,7 @@ int result(matrix *res, matrix *arr) {
                         res->mtrx[0].line[i] = arr->mtrx[i].line[arr->mtrx[i].count - 1];
                 }
         }
-        return 1;
+        return 0;
 }
 
 // INPUT FROM CONSOLE
