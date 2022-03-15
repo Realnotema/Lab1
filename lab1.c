@@ -17,7 +17,7 @@ typedef struct matrix {
 
 // ENTERING INTEGERS
 
-int get_int() {
+int get_int(int *output) {
         char *input = readline("");
         if (input == NULL) {
                 free(input);
@@ -27,9 +27,9 @@ int get_int() {
                 free(input);
                 return 0;
         }
-        int output = atoi(input);
+        *output = atoi(input);
         free(input);
-        return output;
+        return 1;
 }
 
 // FREEING UP  MEMORY
@@ -76,7 +76,7 @@ int input (matrix *arr) {
         int lines_c = 0;
         do {
                 printf("Enter number of lines => ");
-                lines_c = get_int();
+                get_int(lines_c);
                 if (lines_c <= 0) printf("ERROR: Incorrectly set. Try again.");
         } while (lines_c <= 0);
         arr->count_lines = lines_c;
@@ -85,7 +85,7 @@ int input (matrix *arr) {
         for (int i = 0; i < arr->count_lines; i++) {
                 do {
                         printf("Enter number of items in line %d => ", i + 1);
-                        items = get_int();
+                        get_int(items);
                         if (items <= 0) printf("ERROR: Incorrectly set. Try again.");
                 } while (items <= 0);
                 arr->mtrx[i].count = items;
@@ -94,7 +94,7 @@ int input (matrix *arr) {
                 printf("Enter items for line\n", i + 1);
                 for (int j = 0; j < items; j++, temp++) {
                         printf("Enter %d item => ", j + 1);
-                        *temp = get_int();
+                        get_int(temp);
                 }
         }
         return 1;
