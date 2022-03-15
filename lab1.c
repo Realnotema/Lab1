@@ -34,16 +34,18 @@ int get_int() {
 
 // FREEING UP  MEMORY
 
-void clean (matrix *arr) {
+int clean (matrix *arr) {
+        if (arr == NULL) return 0;
         for (int i = 0; i < arr->count_lines; i++) free(arr->mtrx[i].line);
         free(arr->mtrx);
         arr->count_lines = 0;
         arr->mtrx = NULL;
+        return 0;
 }
 
 // CHECK LINE SIGN
 
-int check_sign (matrix arr, int row) {
+int is_positive (matrix arr, int row) {
         int *count = arr.mtrx[row].line;
         for (int j = 0; j < arr.mtrx[row].count; j++, count++) {
                 if (*count < 0) return 1;
@@ -53,7 +55,7 @@ int check_sign (matrix arr, int row) {
 
 // CREATE RESULT ARRAY
 
-void result(matrix *res, matrix *arr) {
+int result(matrix *res, matrix *arr) {
         res->mtrx = (lines *) malloc(sizeof(lines));
         res->count_lines = 1;
         res->mtrx[0].line = (int *) malloc(arr->count_lines*sizeof(int));
@@ -65,7 +67,7 @@ void result(matrix *res, matrix *arr) {
                         res->mtrx[0].line[i] = arr->mtrx[i].line[arr->mtrx[i].count - 1];
                 }
         }
-        return;
+        return 1;
 }
 
 // INPUT FROM CONSOLE
@@ -100,13 +102,14 @@ int input (matrix *arr) {
 
 // OUTPUT FUNCTION
 
-void output (const char *print, matrix arr) {
+int output (const char *print, matrix arr) {
         printf("%s\n", print);
         for (int i = 0; i < arr.count_lines; i++) {
                 int *temp = arr.mtrx[i].line;
                 for (int j = 0; j < arr.mtrx[i].count; j++, temp++) printf("%d ", *temp);
                 printf("\n");
         }
+        return 1;
 }
 
 // MAIN
