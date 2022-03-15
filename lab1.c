@@ -29,7 +29,7 @@ int get_int(int *output) {
         }
         *output = atoi(input);
         free(input);
-        return 1;
+        return 0;
 }
 
 // FREEING UP  MEMORY
@@ -97,7 +97,7 @@ int input (matrix *arr) {
                         get_int(temp);
                 }
         }
-        return 1;
+        return 0;
 }
 
 // OUTPUT FUNCTION
@@ -109,7 +109,7 @@ int output (const char *print, matrix arr) {
                 for (int j = 0; j < arr.mtrx[i].count; j++, temp++) printf("%d ", *temp);
                 printf("\n");
         }
-        return 1;
+        return 0;
 }
 
 // MAIN
